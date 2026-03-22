@@ -15,7 +15,10 @@
     "@astrojs/mdx": "^5.0.2",
     "@astrojs/rss": "^4.0.17",
     "@astrojs/sitemap": "^3.7.1",
+    "@tailwindcss/vite": "^4.2.2",
     "astro": "^6.0.8",
-    "sharp": "^0.34.5"
+    "daisyui": "^5.5.19",
+    "sharp": "^0.34.5",
+    "tailwindcss": "^4.2.2"
   }
 }
