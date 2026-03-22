@@ -1,0 +1,151 @@
+---
+const BotIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg>`;
+const UserIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>`;
+---
+
+<!-- Chatbot UI Container -->
+<div id="ai-chatbot-root" class="w-full max-w-md h-[60vh] overflow-hidden rounded-box border border-base-300 bg-base-100 shadow-xl flex flex-col relative text-base-content mx-auto">
+  <header class="flex items-center justify-between p-4 border-b border-base-300">
+    <h3 class="font-headline text-lg font-bold">AI Assistant</h3>
+  </header>
+  
+  <div class="flex-1 p-4 overflow-y-auto bg-base-100 space-y-4" id="chat-messages">
+    <!-- Messages inserted via JS -->
+  </div>
+  
+  <div class="border-t border-base-300 p-4 bg-base-200">
+    <form class="flex items-center gap-2" id="chat-form">
+      <input type="text" id="chat-input" placeholder="Ask about Kingsley..." class="input input-bordered input-primary flex-1 bg-base-100 text-base" />
+      <button type="submit" id="chat-submit" class="btn btn-square btn-primary">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="h-5 w-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+      </button>
+    </form>
+  </div>
+</div>
+
+<template id="bot-message-template">
+  <div class="chat chat-start w-full opacity-0 translate-y-2 transition-all duration-300 ease-out message-loaded">
+    <div class="chat-image avatar">
+      <div class="w-10 rounded-full border border-base-300 bg-base-200 flex items-center justify-center text-primary p-2">
+        <Fragment set:html={BotIcon} />
+      </div>
+    </div>
+    <div class="chat-bubble bg-base-200 text-base-content text-sm sm:text-base ml-2 shadow-sm whitespace-pre-wrap prose prose-sm prose-p:my-1 prose-a:text-primary max-w-[85%]"></div>
+  </div>
+</template>
+
+<template id="user-message-template">
+  <div class="chat chat-end w-full opacity-0 translate-y-2 transition-all duration-300 ease-out message-loaded">
+    <div class="chat-image avatar">
+      <div class="w-10 rounded-full border border-base-300 bg-primary/20 flex items-center justify-center p-2 text-primary">
+        <Fragment set:html={UserIcon} />
+      </div>
+    </div>
+    <div class="chat-bubble bg-primary text-primary-content text-sm sm:text-base mr-2 shadow-sm whitespace-pre-wrap max-w-[85%]"></div>
+  </div>
+</template>
+
+<template id="loading-template">
+  <div class="chat chat-start w-full" id="loading-indicator">
+    <div class="chat-image avatar">
+      <div class="w-10 rounded-full border border-base-300 bg-base-200 flex items-center justify-center text-primary p-2">
+        <Fragment set:html={BotIcon} />
+      </div>
+    </div>
+    <div class="chat-bubble bg-base-200 text-base-content ml-2 shadow-sm py-3 px-4 flex items-center gap-2">
+      <span class="loading loading-dots loading-sm"></span>
+    </div>
+  </div>
+</template>
+
+<script>
+  import { marked } from 'marked';
+  
+  document.addEventListener('DOMContentLoaded', () => {
+    const chatForm = document.getElementById('chat-form') as HTMLFormElement;
+    const chatInput = document.getElementById('chat-input') as HTMLInputElement;
+    const chatSubmit = document.getElementById('chat-submit') as HTMLButtonElement;
+    const chatMessages = document.getElementById('chat-messages') as HTMLDivElement;
+    
+    if (!chatForm || !chatInput || !chatSubmit || !chatMessages) return;
+
+    const botTemplate = document.getElementById('bot-message-template') as HTMLTemplateElement;
+    const userTemplate = document.getElementById('user-message-template') as HTMLTemplateElement;
+    const loadingTemplate = document.getElementById('loading-template') as HTMLTemplateElement;
+
+    let isLoading = false;
+
+    const animateMessage = (element: HTMLElement) => {
+      // Trigger reflow
+      void element.offsetWidth;
+      element.classList.remove('opacity-0', 'translate-y-2');
+    };
+
+    const addMessage = (content: string, role: 'user' | 'assistant') => {
+      const template = role === 'user' ? userTemplate : botTemplate;
+      const clone = template.content.cloneNode(true) as HTMLElement;
+      // Get the actual wrapper div that was cloned (DocumentFragment's first child)
+      const wrapper = clone.firstElementChild as HTMLElement;
+      
+      const bubble = wrapper.querySelector('.chat-bubble') as HTMLDivElement;
+      
+      if (role === 'assistant') {
+        bubble.innerHTML = marked.parse(content) as string;
+      } else {
+        bubble.textContent = content; // User text is plain string to prevent xss
+      }
+
+      chatMessages.appendChild(wrapper);
+      animateMessage(wrapper);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    };
+
+    const toggleLoading = (show: boolean) => {
+      isLoading = show;
+      chatInput.disabled = show;
+      chatSubmit.disabled = show;
+      
+      if (show) {
+        const clone = loadingTemplate.content.cloneNode(true) as HTMLElement;
+        chatMessages.appendChild(clone.firstElementChild as HTMLElement);
+      } else {
+        const loadingIndicator = document.getElementById('loading-indicator');
+        if (loadingIndicator) loadingIndicator.remove();
+      }
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    };
+
+    // Initial message
+    setTimeout(() => {
+       addMessage("Hello! I'm an AI assistant. Feel free to ask me anything about Kingsley's profile.", "assistant");
+    }, 300);
+
+    chatForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const text = chatInput.value.trim();
+      if (!text || isLoading) return;
+
+      addMessage(text, 'user');
+      chatInput.value = '';
+      toggleLoading(true);
+
+      try {
+        const res = await fetch('/api/chatbot', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ question: text }),
+        });
+        
+        if (!res.ok) throw new Error('API Error');
+        const data = await res.json();
+        
+        toggleLoading(false);
+        addMessage(data.answer, 'assistant');
+      } catch (err) {
+        console.error(err);
+        toggleLoading(false);
+        addMessage('Sorry, I am having trouble connecting to the server. Please check your internet connection or try again later.', 'assistant');
+      }
+    });
+  });
+</script>
