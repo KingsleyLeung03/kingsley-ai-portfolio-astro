@@ -1,11 +1,12 @@
 ---
-const BotIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg>`;
-const UserIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>`;
+import { Bot, User } from 'lucide-react';
+const BotIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg>`;
+const UserIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>`;
 ---
 
 <!-- Chatbot UI Container -->
-<div id="ai-chatbot-root" class="w-full max-w-md h-[60vh] overflow-hidden rounded-box border border-base-300 bg-base-100 shadow-xl flex flex-col relative text-base-content mx-auto">
-  <header class="flex items-center justify-between p-4 border-b border-base-300">
+<div id="ai-chatbot-root" class="w-full max-w-md h-[55vh] overflow-hidden rounded-box shadow-md border border-base-300 bg-base-100 flex flex-col relative text-base-content mx-auto">
+  <header class="flex items-center justify-between p-4 border-b border-base-300 bg-base-200">
     <h3 class="font-headline text-lg font-bold">AI Assistant</h3>
   </header>
   
@@ -30,7 +31,7 @@ const UserIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
         <Fragment set:html={BotIcon} />
       </div>
     </div>
-    <div class="chat-bubble bg-base-200 text-base-content text-sm sm:text-base ml-2 shadow-sm whitespace-pre-wrap prose prose-sm prose-p:my-1 prose-a:text-primary max-w-[85%]"></div>
+    <div class="chat-bubble bg-base-200 text-base-content text-sm sm:text-base shadow-sm whitespace-pre-wrap prose prose-sm prose-p:my-1 prose-a:text-primary max-w-[85%]"></div>
   </div>
 </template>
 
@@ -41,7 +42,7 @@ const UserIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
         <Fragment set:html={UserIcon} />
       </div>
     </div>
-    <div class="chat-bubble bg-primary text-primary-content text-sm sm:text-base mr-2 shadow-sm whitespace-pre-wrap max-w-[85%]"></div>
+    <div class="chat-bubble chat-bubble-primary text-sm sm:text-base shadow-sm whitespace-pre-wrap max-w-[85%]"></div>
   </div>
 </template>
 
@@ -52,7 +53,7 @@ const UserIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
         <Fragment set:html={BotIcon} />
       </div>
     </div>
-    <div class="chat-bubble bg-base-200 text-base-content ml-2 shadow-sm py-3 px-4 flex items-center gap-2">
+    <div class="chat-bubble bg-base-200 text-base-content py-3 px-4 flex items-center gap-2">
       <span class="loading loading-dots loading-sm"></span>
     </div>
   </div>
@@ -61,30 +62,40 @@ const UserIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
 <script>
   import { marked } from 'marked';
   
-  document.addEventListener('DOMContentLoaded', () => {
+  document.addEventListener('astro:page-load', () => {
     const chatForm = document.getElementById('chat-form') as HTMLFormElement;
     const chatInput = document.getElementById('chat-input') as HTMLInputElement;
-    const chatSubmit = document.getElementById('chat-submit') as HTMLButtonElement;
-    const chatMessages = document.getElementById('chat-messages') as HTMLDivElement;
+    const chatMessages = document.getElementById('chat-messages');
+    const submitBtn = document.getElementById('chat-submit') as HTMLButtonElement;
     
-    if (!chatForm || !chatInput || !chatSubmit || !chatMessages) return;
+    if (!chatForm || !chatInput || !chatMessages || !submitBtn) return;
 
-    const botTemplate = document.getElementById('bot-message-template') as HTMLTemplateElement;
     const userTemplate = document.getElementById('user-message-template') as HTMLTemplateElement;
+    const botTemplate = document.getElementById('bot-message-template') as HTMLTemplateElement;
     const loadingTemplate = document.getElementById('loading-template') as HTMLTemplateElement;
 
-    let isLoading = false;
-
-    const animateMessage = (element: HTMLElement) => {
-      // Trigger reflow
-      void element.offsetWidth;
-      element.classList.remove('opacity-0', 'translate-y-2');
+    // Render initial message
+    const renderInitialMessage = () => {
+      if (chatMessages.children.length > 0) return;
+      
+      const clone = botTemplate.content.cloneNode(true) as HTMLElement;
+      const initialMessage = clone.firstElementChild as HTMLElement;
+      const bubble = initialMessage.querySelector('.chat-bubble') as HTMLDivElement;
+      bubble.textContent = "Hello! I'm an AI assistant. Feel free to ask me anything about Kingsley's profile.";
+      
+      chatMessages.appendChild(initialMessage);
+      
+      // Trigger animation
+      requestAnimationFrame(() => {
+        initialMessage.classList.remove('opacity-0', 'translate-y-2');
+      });
     };
+    
+    renderInitialMessage();
 
     const addMessage = (content: string, role: 'user' | 'assistant') => {
       const template = role === 'user' ? userTemplate : botTemplate;
       const clone = template.content.cloneNode(true) as HTMLElement;
-      // Get the actual wrapper div that was cloned (DocumentFragment's first child)
       const wrapper = clone.firstElementChild as HTMLElement;
       
       const bubble = wrapper.querySelector('.chat-bubble') as HTMLDivElement;
@@ -96,55 +107,62 @@ const UserIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
       }
 
       chatMessages.appendChild(wrapper);
-      animateMessage(wrapper);
-      chatMessages.scrollTop = chatMessages.scrollHeight;
-    };
-
-    const toggleLoading = (show: boolean) => {
-      isLoading = show;
-      chatInput.disabled = show;
-      chatSubmit.disabled = show;
       
-      if (show) {
-        const clone = loadingTemplate.content.cloneNode(true) as HTMLElement;
-        chatMessages.appendChild(clone.firstElementChild as HTMLElement);
-      } else {
-        const loadingIndicator = document.getElementById('loading-indicator');
-        if (loadingIndicator) loadingIndicator.remove();
-      }
-      chatMessages.scrollTop = chatMessages.scrollHeight;
+      requestAnimationFrame(() => {
+        wrapper.classList.remove('opacity-0', 'translate-y-2');
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+      });
     };
 
-    // Initial message
-    setTimeout(() => {
-       addMessage("Hello! I'm an AI assistant. Feel free to ask me anything about Kingsley's profile.", "assistant");
-    }, 300);
+    const showLoading = () => {
+      const clone = loadingTemplate.content.cloneNode(true) as HTMLElement;
+      chatMessages.appendChild(clone.firstElementChild as HTMLElement);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+      submitBtn.disabled = true;
+      chatInput.disabled = true;
+    };
+
+    const hideLoading = () => {
+      const loadingIndicator = document.getElementById('loading-indicator');
+      if (loadingIndicator) {
+        loadingIndicator.remove();
+      }
+      submitBtn.disabled = false;
+      chatInput.disabled = false;
+      chatInput.focus();
+    };
 
     chatForm.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const text = chatInput.value.trim();
-      if (!text || isLoading) return;
-
-      addMessage(text, 'user');
+      
+      const message = chatInput.value.trim();
+      if (!message) return;
+      
       chatInput.value = '';
-      toggleLoading(true);
+      addMessage(message, 'user');
+      showLoading();
 
       try {
-        const res = await fetch('/api/chatbot', {
+        const response = await fetch('/api/chatbot', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ question: text }),
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ message }),
         });
+
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+
+        const data = await response.json();
+        hideLoading();
+        addMessage(data.response, 'assistant');
         
-        if (!res.ok) throw new Error('API Error');
-        const data = await res.json();
-        
-        toggleLoading(false);
-        addMessage(data.answer, 'assistant');
-      } catch (err) {
-        console.error(err);
-        toggleLoading(false);
-        addMessage('Sorry, I am having trouble connecting to the server. Please check your internet connection or try again later.', 'assistant');
+      } catch (error) {
+        console.error('Error fetching response:', error);
+        hideLoading();
+        addMessage("Sorry, I encountered an error. Please try again later.", 'assistant');
       }
     });
   });
