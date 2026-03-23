@@ -1,7 +1,5 @@
 ---
-import { Bot, User } from 'lucide-react';
-const BotIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg>`;
-const UserIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>`;
+import { Icon } from 'astro-icon/components';
 ---
 
 <!-- Chatbot UI Container -->
@@ -18,7 +16,7 @@ const UserIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
     <form class="flex items-center gap-2" id="chat-form">
       <input type="text" id="chat-input" placeholder="Ask about Kingsley..." class="input input-bordered input-primary flex-1 bg-base-100 text-base" />
       <button type="submit" id="chat-submit" class="btn btn-square btn-primary">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="h-5 w-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+        <Icon name="ph:paper-plane-right" class="h-5 w-5" />
       </button>
     </form>
   </div>
@@ -28,7 +26,7 @@ const UserIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
   <div class="chat chat-start w-full opacity-0 translate-y-2 transition-all duration-300 ease-out message-loaded">
     <div class="chat-image avatar">
       <div class="w-10 rounded-full border border-base-300 bg-base-200 flex items-center justify-center text-primary p-2">
-        <Fragment set:html={BotIcon} />
+        <Icon name="ph:robot" class="h-5 w-5" />
       </div>
     </div>
     <div class="chat-bubble bg-base-200 text-base-content text-sm sm:text-base shadow-sm whitespace-pre-wrap prose prose-sm prose-p:my-1 prose-a:text-primary max-w-[85%]"></div>
@@ -39,7 +37,7 @@ const UserIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
   <div class="chat chat-end w-full opacity-0 translate-y-2 transition-all duration-300 ease-out message-loaded">
     <div class="chat-image avatar">
       <div class="w-10 rounded-full border border-base-300 bg-primary/20 flex items-center justify-center p-2 text-primary">
-        <Fragment set:html={UserIcon} />
+        <Icon name="ph:user" class="h-5 w-5" />
       </div>
     </div>
     <div class="chat-bubble chat-bubble-primary text-sm sm:text-base shadow-sm whitespace-pre-wrap max-w-[85%]"></div>
@@ -50,7 +48,7 @@ const UserIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
   <div class="chat chat-start w-full" id="loading-indicator">
     <div class="chat-image avatar">
       <div class="w-10 rounded-full border border-base-300 bg-base-200 flex items-center justify-center text-primary p-2">
-        <Fragment set:html={BotIcon} />
+        <Icon name="ph:robot" class="h-5 w-5" />
       </div>
     </div>
     <div class="chat-bubble bg-base-200 text-base-content py-3 px-4 flex items-center gap-2">

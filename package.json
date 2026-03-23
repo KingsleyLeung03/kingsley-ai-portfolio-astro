@@ -12,17 +12,21 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/check": "^0.9.8",
     "@astrojs/mdx": "^5.0.2",
     "@astrojs/node": "^10.0.3",
     "@astrojs/rss": "^4.0.17",
     "@astrojs/sitemap": "^3.7.1",
+    "@iconify-json/ph": "^1.2.2",
     "@tailwindcss/vite": "^4.2.2",
     "astro": "^6.0.8",
+    "astro-icon": "^1.1.5",
     "daisyui": "^5.5.19",
     "exif-parser": "^0.1.12",
     "marked": "^17.0.5",
     "openai": "^6.32.0",
     "sharp": "^0.34.5",
-    "tailwindcss": "^4.2.2"
+    "tailwindcss": "^4.2.2",
+    "typescript": "^5.9.3"
   }
 }
