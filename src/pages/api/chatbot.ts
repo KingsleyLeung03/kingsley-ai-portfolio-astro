@@ -1,3 +1,5 @@
+import { config } from 'dotenv';
+config();
 import type { APIRoute } from 'astro';
 import { cvQA } from '../../ai/flows/cv-qa-chatbot';
 
