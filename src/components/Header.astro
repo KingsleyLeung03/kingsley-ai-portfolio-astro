@@ -1,49 +1,87 @@
 ---
+import { SITE_TITLE, NAV_ITEMS } from "../consts";
 const pathname = Astro.url.pathname;
-
-const navItems = [
-  { href: "/", label: "Home", icon: "home" },
-  { href: "/about", label: "About", icon: "user" },
-  { href: "/blog", label: "Blog", icon: "book" },
-  { href: "/gallery", label: "Gallery", icon: "image" },
-];
+const drawerId = "main-drawer";
 ---
 
-<header class="sticky top-0 z-50 w-full border-b border-base-300 bg-base-100/95 backdrop-blur">
+<header class="sticky top-0 z-40 w-full border-b border-base-300 bg-base-100/95 backdrop-blur">
   <div class="navbar max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 min-h-full">
-    <div class="navbar-start w-full md:w-auto flex justify-between md:justify-start">
-      <a href="/" class="btn btn-ghost text-xl font-headline flex items-center gap-2 normal-case px-2">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6 text-primary"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg>
-        <span class="hidden sm:inline-block">Kingsley's AI Portfolio</span>
+    <div class="navbar-start">
+      <a
+        href="/"
+        class="btn btn-ghost text-xl font-headline flex items-center gap-2 normal-case px-2"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="h-6 w-6 text-primary"
+          ><path d="M12 8V4H8"></path><rect
+            width="16"
+            height="12"
+            x="4"
+            y="8"
+            rx="2"></rect><path d="M2 14h2"></path><path d="M20 14h2"></path><path
+            d="M15 13v2"></path><path d="M9 13v2"></path></svg
+        >
+        <span class="hidden sm:inline-block">{SITE_TITLE}</span>
         <span class="sm:hidden font-bold">Kingsley</span>
       </a>
+    </div>
 
-      <div class="dropdown dropdown-end md:hidden">
-        <div tabindex="0" role="button" class="btn btn-ghost">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
-        </div>
-        <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52 text-base-content border border-base-200">
-          {navItems.map((item) => (
-            <li>
-              <a href={item.href} class={pathname === item.href ? 'active bg-base-200 font-medium' : ''}>
-                {item.label}
-              </a>
-            </li>
-          ))}
+    <div class="navbar-end">
+      <!-- Desktop Navigation -->
+      <div class="hidden md:flex flex-1">
+        <ul class="menu menu-horizontal px-1 gap-1">
+          {
+            NAV_ITEMS.map((item) => (
+              <li>
+                <a
+                  href={item.href}
+                  class={
+                    pathname === item.href
+                      ? "active bg-base-200 font-medium"
+                      : "hover:bg-base-200/50"
+                  }
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))
+          }
         </ul>
       </div>
-    </div>
-    
-    <div class="navbar-end hidden md:flex flex-1">
-      <ul class="menu menu-horizontal px-1 gap-1">
-        {navItems.map((item) => (
-          <li>
-            <a href={item.href} class={pathname === item.href ? 'active bg-base-200 font-medium' : 'hover:bg-base-200/50'}>
-              {item.label}
-            </a>
-          </li>
-        ))}
-      </ul>
+      <!-- Mobile Toggle -->
+      <div class="flex-none md:hidden">
+        <label
+          for={drawerId}
+          aria-label="open sidebar"
+          class="btn btn-square btn-ghost"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="h-6 w-6"
+          >
+            <line x1="4" x2="20" y1="12" y2="12"></line>
+            <line x1="4" x2="20" y1="6" y2="6"></line>
+            <line x1="4" x2="20" y1="18" y2="18"></line>
+          </svg>
+        </label>
+      </div>
     </div>
   </div>
 </header>
