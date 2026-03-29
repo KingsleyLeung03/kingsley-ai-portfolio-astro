@@ -281,17 +281,17 @@ const {
         {
           awards.map((award) => (
             <div class="card bg-base-100 shadow-sm border border-base-200">
-              <div class="card-body">
-                <h3 class="card-title font-headline text-xl">{award.name}</h3>
-                <p class="text-base-content/60 mb-2">{award.issuer}</p>
-                <ul class="list-disc pl-5 space-y-1 text-base-content/80 mb-4">
+              <div class="card-body flex flex-col h-full">
+                <h3 class="card-title font-headline text-xl flex-none">{award.name}</h3>
+                <p class="text-base-content/60 mb-2 flex-none">{award.issuer}</p>
+                <ul class="list-disc pl-5 space-y-1 text-base-content/80 mb-auto">
                   {Array.isArray(award.description) ? (
                     award.description.map((item) => <li>{item}</li>)
                   ) : (
                     <li>{award.description}</li>
                   )}
                 </ul>
-                <div class="flex flex-wrap gap-2 mt-4">
+                <div class="flex flex-wrap gap-2 mt-4 flex-none">
                   {award.tags.map((tag) => (
                     <span class="inline-block bg-secondary text-secondary-content rounded-xl py-1.5 px-4 shadow-sm text-sm font-medium h-auto whitespace-normal break-words max-w-full border border-secondary/20">
                       {tag}
