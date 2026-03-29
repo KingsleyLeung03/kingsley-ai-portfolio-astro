@@ -35,7 +35,7 @@ A high-achieving Computer Science graduate (GPA 7.1/9) who led a six-member team
 
 ### Frontend
 
-JavaScript, TypeScript, React, Angular, Next.js, HTML, CSS, Tailwind CSS, Sass, Bootstrap
+JavaScript, TypeScript, React, Angular, Next.js, Astro, HTML, CSS, Tailwind CSS, DaisyUI, Sass, Bootstrap
 
 ### Backend
 
@@ -55,7 +55,7 @@ Git, Docker, Linux, Bash, Vercel, Jira, Confluence, Agile, Scrum, Visual Studio,
 
 ### Others
 
-Continuously Learning, AI, MCP, Leverage AI Tools (Cursor, Claude Code)
+Continuously Learning, AI, MCP, Claude Code, Cursor
 
 ## Interests
 
@@ -111,6 +111,15 @@ Continuously Learning, AI, MCP, Leverage AI Tools (Cursor, Claude Code)
 - Investigated and resolved technical problems with printers, routers, and desktop applications to increase operational efficiency.
 
 ## Project Experiences
+
+### Kingsley's AI Portfolio (Astro Rewrite)
+
+**[GitHub Repository](https://github.com/KingsleyLeung03/kingsley-ai-portfolio-astro)**
+
+- A complete rewrite of my personal portfolio using Astro to achieve a more modern, lightweight, and performant web experience while matching the original Next.js design.
+- Leveraged Astro's Islands architecture and zero-JS-by-default approach to optimise page load speeds, seamlessly integrating Tailwind CSS and DaisyUI for responsive styling.
+- Integrated an interactive AI Chatbot with the experimental Astro Server Islands, and used the Google Gemini API to dynamically answer queries based on my resume.
+- Set up an automated CI/CD pipeline with GitHub Actions for linting, building, and deploying directly to Vercel.
 
 ### AI-Powered Personal Portfolio
 

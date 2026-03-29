@@ -1,62 +1,59 @@
-# Astro Starter Kit: Blog
+# Kingsley's AI Portfolio (Astro Rewrite)
 
-```sh
-bun create astro@latest -- --template blog
-```
+A modern, fast, and responsive personal portfolio rewritten with the [Astro](https://astro.build) framework. This site showcases my professional experience, skills, and projects, and features an interactive AI chatbot powered by Google Gemini.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## 🚀 Features
 
-Features:
+- **Blazing Fast Performance:** Leverages Astro's zero-JS-by-default architecture and Server Islands to deliver exceptional page load speeds.
+- **Interactive AI Chatbot:** An integrated assistant that can answer questions based on my resume context in real-time.
+- **Responsive UI:** Built with Tailwind CSS and DaisyUI, ensuring a premium and seamless experience across all devices.
+- **Type-safe:** Developed with TypeScript for robust code quality and maintainability.
+- **Automated Deployments:** CI/CD pipeline via GitHub Actions to seamlessly deploy to Vercel.
 
-- ✅ Minimal styling (make it your own!)
-- ✅ 100/100 Lighthouse performance
-- ✅ SEO-friendly with canonical URLs and Open Graph data
-- ✅ Sitemap support
-- ✅ RSS Feed support
-- ✅ Markdown & MDX support
+## 🛠️ Built With
 
-## 🚀 Project Structure
+- [Astro](https://astro.build/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [DaisyUI](https://daisyui.com/)
+- [Google Gemini API](https://deepmind.google/technologies/gemini/)
 
-Inside of your Astro project, you'll see the following folders and files:
+## 📦 Getting Started
 
-```text
-├── public/
-├── src/
-│   ├── components/
-│   ├── content/
-│   ├── layouts/
-│   └── pages/
-├── astro.config.mjs
-├── README.md
-├── package.json
-└── tsconfig.json
-```
+### Prerequisites
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+- Node.js (v18 or newer)
+- npm, pnpm, yarn, or bun
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+### Installation
 
-The `src/content/` directory contains "collections" of related Markdown and MDX documents. Use `getCollection()` to retrieve posts from `src/content/blog/`, and type-check your frontmatter using an optional schema. See [Astro's Content Collections docs](https://docs.astro.build/en/guides/content-collections/) to learn more.
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/KingsleyLeung03/kingsley-ai-portfolio-astro.git
+   ```
 
-Any static assets, like images, can be placed in the `public/` directory.
+2. Navigate into the project directory:
+   ```bash
+   cd kingsley-ai-portfolio-astro
+   ```
 
-## 🧞 Commands
+3. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-All commands are run from the root of the project, from a terminal:
+4. Configure environment variables:
+   Create a `.env` file in the root directory and add your Google Gemini API key:
+   ```env
+   GEMINI_API_KEY=your_gemini_api_key_here
+   ```
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `bun install`             | Installs dependencies                            |
-| `bun dev`             | Starts local dev server at `localhost:4321`      |
-| `bun build`           | Build your production site to `./dist/`          |
-| `bun preview`         | Preview your build locally, before deploying     |
-| `bun astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `bun astro -- --help` | Get help using the Astro CLI                     |
+5. Run the development server:
+   ```bash
+   npm run dev
+   ```
+   Open your browser and navigate to `http://localhost:4321`.
 
-## 👀 Want to learn more?
+## 📜 License
 
-Check out [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
-
-## Credit
-
-This theme is based off of the lovely [Bear Blog](https://github.com/HermanMartinus/bearblog/).
+This project is licensed under the MIT License.

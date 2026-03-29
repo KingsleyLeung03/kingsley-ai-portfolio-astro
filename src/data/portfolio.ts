@@ -17,11 +17,11 @@ export const portfolioData = {
     github: "https://github.com/KingsleyLeung03",
   },
   skills: [
-    "JavaScript", "TypeScript", "React", "Angular", "Next.js", "HTML", "CSS", "Tailwind CSS", "Sass", "Bootstrap",
+    "JavaScript", "TypeScript", "React", "Angular", "Next.js", "Astro", "HTML", "CSS", "Tailwind CSS", "DaisyUI", "Sass", "Bootstrap",
     "Python", "C#", "Java", "ASP.NET", "FastAPI", "Express.js", "Node.js", "Bun",
     "SQL", "LINQ", "SQLite", "Entity Framework (EF Core)", "PostgreSQL", "MongoDB",
     "Pytest", "Vitest",
-    "Git", "Docker", "Linux", "Bash", "GitHub Actions", "Vercel", "Jira", "Confluence", "Visual Studio", "Object-Oriented Programming (OOP)", "CI/CD", "Cloudflare Workers", "JetBrains", "Terraform",
+    "Git", "Docker", "Linux", "Bash", "GitHub Actions", "Vercel", "Jira", "Confluence", "Visual Studio", "Object-Oriented Programming (OOP)", "CI/CD", "Cloudflare Workers", "JetBrains", "Terraform", "Claude Code", "Cursor"
   ],
   workExperience: [
     {
@@ -82,6 +82,17 @@ export const portfolioData = {
     },
   ],
   projects: [
+    {
+      name: "Kingsley's AI Portfolio (Astro Rewrite)",
+      description: [
+        "A complete rewrite of my personal portfolio using Astro to achieve a more modern, lightweight, and performant web experience while matching the original Next.js design.",
+        "Leveraged Astro's Islands architecture and zero-JS-by-default approach to optimise page load speeds, seamlessly integrating Tailwind CSS and DaisyUI for responsive styling.",
+        "Integrated an interactive AI Chatbot with the experimental Astro Server Islands, and used the Google Gemini API to dynamically answer queries based on my resume.",
+        "Set up an automated CI/CD pipeline with GitHub Actions for linting, building, and deploying directly to Vercel."
+      ],
+      tags: ["Astro", "TypeScript", "Tailwind CSS", "DaisyUI", "Google Gemini", "Server Islands", "Vercel", "GitHub Actions", "CI/CD"],
+      link: "https://github.com/KingsleyLeung03/kingsley-ai-portfolio-astro",
+    },
     {
       name: "AI-Powered Personal Portfolio",
       description: [
