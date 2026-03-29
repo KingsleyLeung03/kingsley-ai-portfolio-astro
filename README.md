@@ -58,6 +58,6 @@ A modern, fast, and responsive personal portfolio rewritten with the [Astro](htt
    ```
    Open your browser and navigate to `http://localhost:4321`.
 
-## 📜 License
+## 📜 Licence
 
 This project is licensed under the MIT License.

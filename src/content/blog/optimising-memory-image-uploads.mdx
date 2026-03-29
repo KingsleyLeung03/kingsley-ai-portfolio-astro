@@ -1,10 +1,10 @@
 ---
-title: "Under the Hood: Optimizing Memory for Large-Scale Image Uploads"
+title: "Under the Hood: Optimising Memory for Large-Scale Image Uploads"
 pubDate: "2024-09-10"
 description: "How breaking down a complex memory management challenge led to a 70% decrease in client-side resource consumption during large batch uploads."
 ---
 
-While developing the **CARE** web platform—a specialized AI-driven platform tailored for wildlife conservation researchers—I ran headfirst into a gnarly technical challenge: excessive client-side memory consumption when researchers submitted massive bursts of images.
+While developing the **CARE** web platform—a specialised AI-driven platform tailored for wildlife conservation researchers—I ran headfirst into a gnarly technical challenge: excessive client-side memory consumption when researchers submitted massive bursts of images.
 
 The initial implementation looked solid on paper, but user reports told a different story. If a researcher uploaded a batch of 50+ high-resolution wildlife photos simultaneously, their browser struggled, sometimes even crashing due to uncontrolled RAM usage.
 
@@ -16,13 +16,13 @@ At a glance, the most straightforward solution was compression. However, the AI 
 
 ### Synthesizing a Systematic Approach
 
-To explore scalable options, I structured my problem-solving method. I tapped into LLM tooling (specifically ChatGPT) as an aid, employing highly targeted prompts like: _“How to optimize large-scale image uploads without overloading client memory, when image compression cannot be used?”_
+To explore scalable options, I structured my problem-solving method. I tapped into LLM tooling (specifically ChatGPT) as an aid, employing highly targeted prompts like: _“How to optimise large-scale image uploads without overloading client memory, when image compression cannot be used?”_
 
-After analyzing alternatives—ranging from chunked transferring to lazy-loading techniques—I prioritized **batch processing**. It aligned perfectly with academic frameworks and emphasized decomposing the problem into strictly managed sets.
+After analysing alternatives—ranging from chunked transferring to lazy-loading techniques—I prioritised **batch processing**. It aligned perfectly with academic frameworks and emphasised decomposing the problem into strictly managed sets.
 
 ### The Implementation
 
-I re-engineered the front-end logic by designing a recursive JavaScript function. This effectively throttled the UI, uploading images in strictly controlled streams of 10. By utilizing Javascript `Promise` and structured `async/await` syntax, the function prevented the main browser UI thread from freezing. This recursive step-by-step processing completely eliminated the resource flood.
+I re-engineered the front-end logic by designing a recursive JavaScript function. This effectively throttled the UI, uploading images in strictly controlled streams of 10. By utilising Javascript `Promise` and structured `async/await` syntax, the function prevented the main browser UI thread from freezing. This recursive step-by-step processing completely eliminated the resource flood.
 
 Additionally, I rolled out real-time progress tracking to significantly boost the user-facing UX, assuring researchers the process hadn't stalled, and constructed robust error-handling hooks for any individual payload that failed.
 

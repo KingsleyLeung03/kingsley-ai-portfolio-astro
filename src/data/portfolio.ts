@@ -382,7 +382,7 @@ export const portfolioData = {
       description: [
         "Participated in 'Diary of a Cyber Breach Investigator' workshop, gaining insight into real-world incident response, threat modelling, and breach mitigation strategies.",
       ],
-      tags: ["Cybersecurity", "Incident Response", "Threat Modeling"],
+      tags: ["Cybersecurity", "Incident Response", "Threat Modelling"],
     },
     {
       name: "Certificate of Outstanding Achievement (x2)",
@@ -407,7 +407,7 @@ export const portfolioData = {
   volunteering: [
     {
       role: "Class Representative (x3)",
-      organization: "The University of Auckland",
+      organisation: "The University of Auckland",
       period: "2022 – 2024",
       description: [
         "Elected as class representative three times (COMPSCI 335, COMPSCI 351, COMPSCI 313).",

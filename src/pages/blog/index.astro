@@ -23,7 +23,7 @@ const posts = (await getCollection('blog')).sort(
             </h2>
             <div class="text-sm text-base-content/60 mt-2 mb-4">
               <time datetime={post.data.pubDate.toISOString()}>
-                {post.data.pubDate.toLocaleDateString('en-us', {
+                {post.data.pubDate.toLocaleDateString('en-GB', {
                   year: 'numeric',
                   month: 'short',
                   day: 'numeric',
