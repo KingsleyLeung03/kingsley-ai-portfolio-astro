@@ -1,13 +1,16 @@
 ---
-import { type CollectionEntry, getCollection, render } from 'astro:content';
-import BlogPost from '../../layouts/BlogPost.astro';
+import { type CollectionEntry, getCollection } from 'astro:content';
+import { render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+export const prerender = true;
 
 export async function getStaticPaths() {
-	const posts = await getCollection('blog');
-	return posts.map((post) => ({
-		params: { slug: post.id },
-		props: post,
-	}));
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: post,
+  }));
 }
 type Props = CollectionEntry<'blog'>;
 
@@ -15,6 +18,33 @@ const post = Astro.props;
 const { Content } = await render(post);
 ---
 
-<BlogPost {...post.data}>
-	<Content />
-</BlogPost>
+<Layout title={post.data.title} description={post.data.description}>
+  <div class="container max-w-3xl mx-auto px-6 py-12">
+    <article class="prose prose-lg prose-base max-w-none prose-headings:font-headline prose-a:text-primary prose-img:rounded-2xl">
+      <div class="mb-10 text-center not-prose">
+        <h1 class="font-headline text-4xl md:text-5xl lg:text-6xl mb-4 font-bold text-base-content">{post.data.title}</h1>
+        <div class="text-base-content/60 text-lg">
+          <time datetime={post.data.pubDate.toISOString()}>
+            {post.data.pubDate.toLocaleDateString('en-us', {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric',
+            })}
+          </time>
+        </div>
+      </div>
+      
+      <div class="divider not-prose mb-12"></div>
+      
+      <div class="text-base-content">
+        <Content />
+      </div>
+      
+      <div class="divider not-prose mt-16"></div>
+      
+      <div class="text-center not-prose">
+        <a href="/blog" class="btn btn-outline btn-md">← Back to Blog</a>
+      </div>
+    </article>
+  </div>
+</Layout>

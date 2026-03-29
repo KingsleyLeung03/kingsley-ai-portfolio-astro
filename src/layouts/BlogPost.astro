@@ -5,13 +5,15 @@ import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 import Header from '../components/Header.astro';
+import { NAV_ITEMS } from '../consts';
 
 type Props = CollectionEntry<'blog'>['data'];
 
 const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+const pathname = Astro.url.pathname;
 ---
 
-<html lang="en">
+<html lang="en-GB">
 	<head>
 		<BaseHead title={title} description={description} />
 		<style>
@@ -55,32 +57,54 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 		</style>
 	</head>
 
-	<body>
-		<Header />
-		<main>
-			<article>
-				<div class="hero-image">
-					{heroImage && <Image width={1020} height={510} src={heroImage} alt="" />}
-				</div>
-				<div class="prose">
-					<div class="title">
-						<div class="date">
-							<FormattedDate date={pubDate} />
-							{
-								updatedDate && (
-									<div class="last-updated-on">
-										Last updated on <FormattedDate date={updatedDate} />
-									</div>
-								)
-							}
+	<body class="bg-base-100 text-base-content min-h-screen">
+		<div class="drawer drawer-end">
+			<input id="main-drawer" type="checkbox" class="drawer-toggle" />
+			<div class="drawer-content flex flex-col min-h-screen">
+				<Header />
+				<main class="flex-1">
+					<article>
+						<div class="hero-image">
+							{heroImage && <Image width={1020} height={510} src={heroImage} alt="" />}
 						</div>
-						<h1>{title}</h1>
-						<hr />
-					</div>
-					<slot />
-				</div>
-			</article>
-		</main>
-		<Footer />
+						<div class="prose">
+							<div class="title">
+								<div class="date">
+									<FormattedDate date={pubDate} />
+									{
+										updatedDate && (
+											<div class="last-updated-on">
+												Last updated on <FormattedDate date={updatedDate} />
+											</div>
+										)
+									}
+								</div>
+								<h1>{title}</h1>
+								<hr />
+							</div>
+							<slot />
+						</div>
+					</article>
+				</main>
+				<Footer />
+			</div>
+			<div class="drawer-side z-50">
+				<label for="main-drawer" aria-label="close sidebar" class="drawer-overlay"></label>
+				<ul class="menu bg-base-200 min-h-full w-80 p-4 pt-20">
+					{
+						NAV_ITEMS.map((item) => (
+							<li>
+								<a
+									href={item.href}
+									class={pathname === item.href ? "active font-bold" : ""}
+								>
+									{item.label}
+								</a>
+							</li>
+						))
+					}
+				</ul>
+			</div>
+		</div>
 	</body>
 </html>

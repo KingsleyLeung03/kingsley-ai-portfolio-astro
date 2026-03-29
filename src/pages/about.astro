@@ -1,63 +1,350 @@
 ---
-import AboutHeroImage from '../assets/blog-placeholder-about.jpg';
-import Layout from '../layouts/BlogPost.astro';
+import Layout from "../layouts/Layout.astro";
+import { portfolioData } from "../data/portfolio";
+import { Icon } from "astro-icon/components";
+
+const {
+  profile,
+  contact,
+  skills,
+  workExperience,
+  projects,
+  education,
+  awards,
+  volunteering,
+  interests,
+} = portfolioData;
 ---
 
 <Layout
-	title="About Me"
-	description="Lorem ipsum dolor sit amet"
-	pubDate={new Date('August 08 2021')}
-	heroImage={AboutHeroImage}
+  title="About | Kingsley's AI Portfolio"
+  description="Learn more about Kingsley, the AI & Full-Stack Developer."
 >
-	<p>
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-		labore et dolore magna aliqua. Vitae ultricies leo integer malesuada nunc vel risus commodo
-		viverra. Adipiscing enim eu turpis egestas pretium. Euismod elementum nisi quis eleifend quam
-		adipiscing. In hac habitasse platea dictumst vestibulum. Sagittis purus sit amet volutpat. Netus
-		et malesuada fames ac turpis egestas. Eget magna fermentum iaculis eu non diam phasellus
-		vestibulum lorem. Varius sit amet mattis vulputate enim. Habitasse platea dictumst quisque
-		sagittis. Integer quis auctor elit sed vulputate mi. Dictumst quisque sagittis purus sit amet.
-	</p>
+  <div class="container max-w-5xl mx-auto px-4 py-4 pt-0">
+    <!-- Hero Section -->
+    <header
+      class="flex flex-col md:flex-row items-center gap-8 md:gap-12 pt-4 pb-12 md:py-16 text-center md:text-left"
+    >
+      <div class="avatar">
+        <div
+          class="w-32 h-32 md:w-40 md:h-40 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2 overflow-hidden shadow-lg object-cover"
+        >
+          <img
+            src={profile.avatar}
+            alt={profile.name}
+            data-ai-hint="man portrait"
+          />
+        </div>
+      </div>
+      <div>
+        <h1 class="font-headline text-5xl md:text-6xl font-bold">
+          {profile.name}
+        </h1>
+        <p class="mt-2 text-sm text-base-content/60">
+          Preferred name: Kingsley Leung (He/Him)
+        </p>
+        <p
+          class="mt-2 text-xl md:text-2xl text-primary font-semibold leading-relaxed flex flex-wrap items-center justify-center md:justify-start gap-2"
+        >
+          <span class="inline-block">Software Developer</span>
+          <span class="text-base-content/20 hidden md:inline">|</span>
+          <span class="inline-block">C#, Python & TypeScript</span>
+          <span class="text-base-content/20 hidden md:inline">|</span>
+          <span class="inline-block">Passionate about AI-Driven Problem-Solving and DevOps</span>
+        </p>
+        <p class="mt-4 text-lg text-base-content/80 break-words">{profile.summary}</p>
+        <div
+          class="mt-6 flex flex-col sm:flex-row gap-4 justify-center md:justify-start"
+        >
+          <a
+            href={profile.resumeUrl}
+            download="Kingsley_Leung_Resume.pdf"
+            class="btn btn-primary btn-lg"
+          >
+            <Icon name="ph:download-simple" class="mr-2 h-4 w-4" />
+            Download CV
+          </a>
+          <a
+            href={profile.transcriptUrl}
+            download="Kingsley_Leung_Academic_Transcript.pdf"
+            class="btn btn-outline btn-lg"
+          >
+            <Icon name="ph:download-simple" class="mr-2 h-4 w-4" />
+            Download Transcript
+          </a>
+        </div>
+      </div>
+    </header>
 
-	<p>
-		Morbi tristique senectus et netus. Id semper risus in hendrerit gravida rutrum quisque non
-		tellus. Habitasse platea dictumst quisque sagittis purus sit amet. Tellus molestie nunc non
-		blandit massa. Cursus vitae congue mauris rhoncus. Accumsan tortor posuere ac ut. Fringilla urna
-		porttitor rhoncus dolor. Elit ullamcorper dignissim cras tincidunt lobortis. In cursus turpis
-		massa tincidunt dui ut ornare lectus. Integer feugiat scelerisque varius morbi enim nunc.
-		Bibendum neque egestas congue quisque egestas diam. Cras ornare arcu dui vivamus arcu felis
-		bibendum. Dignissim suspendisse in est ante in nibh mauris. Sed tempus urna et pharetra pharetra
-		massa massa ultricies mi.
-	</p>
+    <div class="divider"></div>
 
-	<p>
-		Mollis nunc sed id semper risus in. Convallis a cras semper auctor neque. Diam sit amet nisl
-		suscipit. Lacus viverra vitae congue eu consequat ac felis donec. Egestas integer eget aliquet
-		nibh praesent tristique magna sit amet. Eget magna fermentum iaculis eu non diam. In vitae
-		turpis massa sed elementum. Tristique et egestas quis ipsum suspendisse ultrices. Eget lorem
-		dolor sed viverra ipsum. Vel turpis nunc eget lorem dolor sed viverra. Posuere ac ut consequat
-		semper viverra nam. Laoreet suspendisse interdum consectetur libero id faucibus. Diam phasellus
-		vestibulum lorem sed risus ultricies tristique. Rhoncus dolor purus non enim praesent elementum
-		facilisis. Ultrices tincidunt arcu non sodales neque. Tempus egestas sed sed risus pretium quam
-		vulputate. Viverra suspendisse potenti nullam ac tortor vitae purus faucibus ornare. Fringilla
-		urna porttitor rhoncus dolor purus non. Amet dictum sit amet justo donec enim.
-	</p>
+    <!-- Contact Section -->
+    <section class="py-12 md:py-16">
+      <div class="flex items-center gap-3 mb-8">
+        <Icon name="ph:envelope" class="w-8 h-8 text-primary" />
+        <h2 class="text-3xl font-headline text-primary">Contact Me</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-lg">
+        <div class="flex items-center gap-3">
+          <Icon name="ph:envelope" class="w-5 h-5 text-base-content/60" />
+          <a
+            href={`mailto:${contact.email}`}
+            class="hover:text-primary transition-colors"
+            >{contact.email}
+          </a>
+        </div>
+        <div class="flex items-center gap-3">
+          <Icon name="ph:phone" class="w-5 h-5 text-base-content/60" />
+          <span>{contact.phone}</span>
+        </div>
+        <div class="flex items-center gap-3">
+          <Icon name="ph:map-pin" class="w-5 h-5 text-base-content/60" />
+          <span>{contact.location}</span>
+        </div>
+        <div class="flex items-center gap-3">
+          <div class="flex items-center gap-3">
+            <Icon name="ph:linkedin-logo" class="w-5 h-5 text-base-content/60" />
+            <a
+              href={contact.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="hover:text-primary transition-colors"
+              >LinkedIn
+            </a>
+          </div>
+          <div class="flex items-center gap-3 ml-4">
+            <Icon name="ph:github-logo" class="w-5 h-5 text-base-content/60" />
+            <a
+              href={contact.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="hover:text-primary transition-colors"
+              >GitHub
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
 
-	<p>
-		Mattis ullamcorper velit sed ullamcorper morbi tincidunt. Tortor posuere ac ut consequat semper
-		viverra. Tellus mauris a diam maecenas sed enim ut sem viverra. Venenatis urna cursus eget nunc
-		scelerisque viverra mauris in. Arcu ac tortor dignissim convallis aenean et tortor at. Curabitur
-		gravida arcu ac tortor dignissim convallis aenean et tortor. Egestas tellus rutrum tellus
-		pellentesque eu. Fusce ut placerat orci nulla pellentesque dignissim enim sit amet. Ut enim
-		blandit volutpat maecenas volutpat blandit aliquam etiam. Id donec ultrices tincidunt arcu. Id
-		cursus metus aliquam eleifend mi.
-	</p>
+    <div class="divider"></div>
 
-	<p>
-		Tempus quam pellentesque nec nam aliquam sem. Risus at ultrices mi tempus imperdiet. Id porta
-		nibh venenatis cras sed felis eget velit. Ipsum a arcu cursus vitae. Facilisis magna etiam
-		tempor orci eu lobortis elementum. Tincidunt dui ut ornare lectus sit. Quisque non tellus orci
-		ac. Blandit libero volutpat sed cras. Nec tincidunt praesent semper feugiat nibh sed pulvinar
-		proin gravida. Egestas integer eget aliquet nibh praesent tristique magna.
-	</p>
+    <!-- Skills Section -->
+    <section class="py-12 md:py-16">
+      <div class="flex items-center gap-3 mb-8">
+        <Icon name="ph:user" class="w-8 h-8 text-primary" />
+        <h2 class="text-3xl font-headline text-primary">Skills</h2>
+      </div>
+      <div class="flex flex-wrap gap-2">
+        {
+          skills.map((skill) => (
+            <div class="inline-block bg-secondary text-secondary-content rounded-xl py-1.5 px-4 shadow-sm text-sm font-medium h-auto whitespace-normal break-words max-w-full border border-secondary/20">
+              {skill}
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- Work Experience -->
+    <section class="py-12 md:py-16">
+      <div class="flex items-center gap-3 mb-8">
+        <Icon name="ph:briefcase" class="w-8 h-8 text-primary" />
+        <h2 class="text-3xl font-headline text-primary">Work Experience</h2>
+      </div>
+      <div class="space-y-8 border-l-2 border-primary/30 pl-8 ml-4 relative">
+        {
+          workExperience.map((job) => (
+            <div class="card bg-base-100 shadow-sm border border-base-200 relative">
+              <span class="absolute -left-10 md:-left-12 top-6 w-4 h-4 rounded-full bg-primary ring-4 ring-base-100" />
+              <div class="card-body">
+                <h3 class="card-title font-headline text-2xl">{job.role}</h3>
+                <p class="text-base-content/60 mb-2">
+                  {job.company} | {job.period}
+                </p>
+                <ul class="list-disc pl-5 space-y-1 text-base-content/80 mb-4">
+                  {job.description.map((item) => (
+                    <li>{item}</li>
+                  ))}
+                </ul>
+                <div class="flex flex-wrap gap-2 mt-2">
+                  {job.tags.map((tag) => (
+                    <span class="inline-block bg-secondary text-secondary-content rounded-xl py-1.5 px-4 shadow-sm text-sm font-medium h-auto whitespace-normal break-words max-w-full border border-secondary/20">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- Projects Experience -->
+    <section class="py-12 md:py-16">
+      <div class="flex items-center gap-3 mb-8">
+        <Icon name="ph:book-open" class="w-8 h-8 text-primary" />
+        <h2 class="text-3xl font-headline text-primary">Projects</h2>
+      </div>
+      <div class="grid md:grid-cols-2 gap-6">
+        {
+          projects.map((project) => (
+            <div class="card bg-base-100 shadow-sm border border-base-200">
+              <div class="card-body flex flex-col h-full">
+                <h3 class="card-title font-headline text-2xl mb-2">
+                  {project.name}
+                </h3>
+                <ul class="list-disc pl-5 space-y-1 text-base-content/80 flex-1">
+                  {Array.isArray(project.description) ? (
+                    project.description.map((item) => <li>{item}</li>)
+                  ) : (
+                    <li>{project.description}</li>
+                  )}
+                </ul>
+                <div class="flex flex-wrap gap-2 my-4">
+                  {project.tags.map((tag) => (
+                    <span class="inline-block bg-secondary text-secondary-content rounded-xl py-1.5 px-4 shadow-sm text-sm font-medium h-auto whitespace-normal break-words max-w-full border border-secondary/20">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+                <div class="card-actions justify-end mt-auto">
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="btn btn-outline btn-sm"
+                  >
+                    View Project{" "}
+                    <Icon name="ph:arrow-square-out" class="ml-2 h-4 w-4" />
+                  </a>
+                </div>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- Education -->
+    <section class="py-12 md:py-16">
+      <div class="flex items-center gap-3 mb-8">
+        <Icon name="ph:graduation-cap" class="w-8 h-8 text-primary" />
+        <h2 class="text-3xl font-headline text-primary">Education</h2>
+      </div>
+      <div class="space-y-8 border-l-2 border-primary/30 pl-8 ml-4 relative">
+        {
+          education.map((edu) => (
+            <div class="card bg-base-100 shadow-sm border border-base-200 relative">
+              <span class="absolute -left-10 md:-left-12 top-6 w-4 h-4 rounded-full bg-primary ring-4 ring-base-100" />
+              <div class="card-body">
+                <h3 class="card-title font-headline text-xl">{edu.degree}</h3>
+                <p class="text-base-content/60 mb-2">
+                  {edu.institution} | {edu.period}
+                </p>
+                <ul class="list-disc pl-5 space-y-1 text-base-content/80 mb-4">
+                  {edu.description.map((item) => (
+                    <li>{item}</li>
+                  ))}
+                </ul>
+                <div class="flex flex-wrap gap-2 mt-2">
+                  {edu.tags.map((tag) => (
+                    <span class="inline-block bg-secondary text-secondary-content rounded-xl py-1.5 px-4 shadow-sm text-sm font-medium h-auto whitespace-normal break-words max-w-full border border-secondary/20">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- Awards -->
+    <section class="py-12 md:py-16">
+      <div class="flex items-center gap-3 mb-8">
+        <Icon name="ph:medal" class="w-8 h-8 text-primary" />
+        <h2 class="text-3xl font-headline text-primary">
+          Awards & Certifications
+        </h2>
+      </div>
+      <div class="grid md:grid-cols-2 gap-6">
+        {
+          awards.map((award) => (
+            <div class="card bg-base-100 shadow-sm border border-base-200">
+              <div class="card-body flex flex-col h-full">
+                <h3 class="card-title font-headline text-xl flex-none">{award.name}</h3>
+                <p class="text-base-content/60 mb-2 flex-none">{award.issuer}</p>
+                <ul class="list-disc pl-5 space-y-1 text-base-content/80 mb-auto">
+                  {Array.isArray(award.description) ? (
+                    award.description.map((item) => <li>{item}</li>)
+                  ) : (
+                    <li>{award.description}</li>
+                  )}
+                </ul>
+                <div class="flex flex-wrap gap-2 mt-4 flex-none">
+                  {award.tags.map((tag) => (
+                    <span class="inline-block bg-secondary text-secondary-content rounded-xl py-1.5 px-4 shadow-sm text-sm font-medium h-auto whitespace-normal break-words max-w-full border border-secondary/20">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <div class="grid md:grid-cols-2 gap-12">
+      <!-- Volunteering -->
+      <section class="py-12 md:py-16">
+        <div class="flex items-center gap-3 mb-8">
+          <Icon name="ph:heart" class="w-8 h-8 text-primary" />
+          <h2 class="text-3xl font-headline text-primary">Volunteering</h2>
+        </div>
+        <div class="space-y-6">
+          {
+            volunteering.map((item) => (
+              <div>
+                <h3 class="text-xl font-bold">
+                  {item.role} at {item.organisation}
+                </h3>
+                <p class="text-sm text-base-content/60 mb-2">{item.period}</p>
+                <ul class="list-disc pl-5 space-y-1 text-base-content/80">
+                  {item.description.map((desc) => (
+                    <li>{desc}</li>
+                  ))}
+                </ul>
+              </div>
+            ))
+          }
+        </div>
+      </section>
+
+      <!-- Interests -->
+      <section class="py-12 md:py-16">
+        <div class="flex items-center gap-3 mb-8">
+          <Icon name="ph:heart" class="w-8 h-8 text-primary" />
+          <h2 class="text-3xl font-headline text-primary">Interests</h2>
+        </div>
+        <ul
+          class="space-y-3 list-disc list-inside text-base-content/80 text-lg"
+        >
+          {interests.map((interest) => <li>{interest}</li>)}
+        </ul>
+      </section>
+    </div>
+  </div>
 </Layout>
