@@ -5,14 +5,14 @@ import tailwindcss from "@tailwindcss/vite";
 import node from "@astrojs/node";
 import icon from "astro-icon";
 
+import vercel from "@astrojs/vercel";
+
 // https://astro.build/config
 export default defineConfig({
   site: "https://example.com",
   integrations: [mdx(), sitemap(), icon()],
   output: "server",
-  adapter: node({
-    mode: "standalone",
-  }),
+  adapter: vercel(),
   vite: {
     plugins: [tailwindcss()],
   },
