@@ -22,6 +22,7 @@ jobs:
 
       - name: Install & Build
         uses: withastro/action@v6
-        package-manager: bun@latest
+        with:
+          package-manager: bun@latest
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
