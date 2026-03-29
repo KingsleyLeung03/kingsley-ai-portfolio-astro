@@ -1,4 +1,4 @@
-declare module 'exif-parser' {
+declare module "exif-parser" {
   export function create(buffer: Buffer): {
     parse(): {
       tags: {

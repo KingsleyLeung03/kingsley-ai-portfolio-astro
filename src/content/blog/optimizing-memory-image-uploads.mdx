@@ -10,13 +10,13 @@ The initial implementation looked solid on paper, but user reports told a differ
 
 ### The Constraint
 
-Every problem needs profiling. Using built-in browser tools, I confirmed that attempting to read and display a preview for dozens of massive image files at the exact same moment was immediately choking the available memory. 
+Every problem needs profiling. Using built-in browser tools, I confirmed that attempting to read and display a preview for dozens of massive image files at the exact same moment was immediately choking the available memory.
 
 At a glance, the most straightforward solution was compression. However, the AI models responsible for detecting species naturally relied on intact, high-fidelity source images. Applying compression client-side before processing risked degrading the AI model’s accuracy. I needed an architectural solution that left the images perfect, but prevented the system from bogging down.
 
 ### Synthesizing a Systematic Approach
 
-To explore scalable options, I structured my problem-solving method. I tapped into LLM tooling (specifically ChatGPT) as an aid, employing highly targeted prompts like: *“How to optimize large-scale image uploads without overloading client memory, when image compression cannot be used?”*
+To explore scalable options, I structured my problem-solving method. I tapped into LLM tooling (specifically ChatGPT) as an aid, employing highly targeted prompts like: _“How to optimize large-scale image uploads without overloading client memory, when image compression cannot be used?”_
 
 After analyzing alternatives—ranging from chunked transferring to lazy-loading techniques—I prioritized **batch processing**. It aligned perfectly with academic frameworks and emphasized decomposing the problem into strictly managed sets.
 
@@ -30,4 +30,4 @@ Additionally, I rolled out real-time progress tracking to significantly boost th
 
 The outcome was a massive technical win for our frontend performance. Overall client memory usage plummeted by approximately **70%** during peak upload times. This logic effectively enabled seamless and stable handling of hundreds of individual image files, tightly restricting peak consumption strictly under 200MB.
 
-Breaking complex constraints into smaller, manageable technical logic is a universal strategy. The process reinforced how systematically decomposing abstract requirements leads directly to efficient, reliable code. 
+Breaking complex constraints into smaller, manageable technical logic is a universal strategy. The process reinforced how systematically decomposing abstract requirements leads directly to efficient, reliable code.

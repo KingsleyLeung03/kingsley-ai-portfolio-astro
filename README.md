@@ -28,22 +28,26 @@ A modern, fast, and responsive personal portfolio rewritten with the [Astro](htt
 ### Installation
 
 1. Clone the repository:
+
    ```bash
    git clone https://github.com/KingsleyLeung03/kingsley-ai-portfolio-astro.git
    ```
 
 2. Navigate into the project directory:
+
    ```bash
    cd kingsley-ai-portfolio-astro
    ```
 
 3. Install dependencies:
+
    ```bash
    npm install
    ```
 
 4. Configure environment variables:
    Create a `.env` file in the root directory and add your Google Gemini API key:
+
    ```env
    GEMINI_API_KEY=your_gemini_api_key_here
    ```
