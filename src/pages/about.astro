@@ -137,7 +137,7 @@ const {
       <div class="flex flex-wrap gap-2">
         {
           skills.map((skill) => (
-            <div class="badge badge-secondary badge-lg py-3 px-4 shadow-sm">
+            <div class="inline-block bg-secondary text-secondary-content rounded-xl py-1.5 px-4 shadow-sm text-sm font-medium h-auto whitespace-normal break-words max-w-full border border-secondary/20">
               {skill}
             </div>
           ))
@@ -170,7 +170,9 @@ const {
                 </ul>
                 <div class="flex flex-wrap gap-2 mt-2">
                   {job.tags.map((tag) => (
-                    <span class="badge badge-outline">{tag}</span>
+                    <span class="inline-block bg-secondary text-secondary-content rounded-xl py-1.5 px-4 shadow-sm text-sm font-medium h-auto whitespace-normal break-words max-w-full border border-secondary/20">
+                      {tag}
+                    </span>
                   ))}
                 </div>
               </div>
@@ -205,7 +207,9 @@ const {
                 </ul>
                 <div class="flex flex-wrap gap-2 my-4">
                   {project.tags.map((tag) => (
-                    <span class="badge badge-outline badge-md">{tag}</span>
+                    <span class="inline-block bg-secondary text-secondary-content rounded-xl py-1.5 px-4 shadow-sm text-sm font-medium h-auto whitespace-normal break-words max-w-full border border-secondary/20">
+                      {tag}
+                    </span>
                   ))}
                 </div>
                 <div class="card-actions justify-end mt-auto">
@@ -251,7 +255,9 @@ const {
                 </ul>
                 <div class="flex flex-wrap gap-2 mt-2">
                   {edu.tags.map((tag) => (
-                    <span class="badge badge-outline">{tag}</span>
+                    <span class="inline-block bg-secondary text-secondary-content rounded-xl py-1.5 px-4 shadow-sm text-sm font-medium h-auto whitespace-normal break-words max-w-full border border-secondary/20">
+                      {tag}
+                    </span>
                   ))}
                 </div>
               </div>
@@ -287,7 +293,9 @@ const {
                 </ul>
                 <div class="flex flex-wrap gap-2 mt-4">
                   {award.tags.map((tag) => (
-                    <span class="badge badge-outline">{tag}</span>
+                    <span class="inline-block bg-secondary text-secondary-content rounded-xl py-1.5 px-4 shadow-sm text-sm font-medium h-auto whitespace-normal break-words max-w-full border border-secondary/20">
+                      {tag}
+                    </span>
                   ))}
                 </div>
               </div>
