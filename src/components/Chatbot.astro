@@ -18,7 +18,7 @@ import { Icon } from "astro-icon/components";
     </div>
   </header>
   
-  <div class="flex-1 p-4 overflow-y-auto bg-base-100 space-y-4" id="chat-messages">
+  <div class="flex-1 p-4 overflow-y-auto bg-base-100 space-y-4 relative" id="chat-messages">
     <!-- Messages inserted via JS -->
   </div>
   
@@ -126,7 +126,20 @@ import { Icon } from "astro-icon/components";
       
       requestAnimationFrame(() => {
         wrapper.classList.remove('opacity-0', 'translate-y-2');
-        chatMessages.scrollTop = chatMessages.scrollHeight;
+        if (role === 'user') {
+          chatMessages.scrollTop = chatMessages.scrollHeight;
+        } else {
+          const userMessages = chatMessages.querySelectorAll('.chat-end');
+          if (userMessages.length > 0) {
+            const lastUserMessage = userMessages[userMessages.length - 1] as HTMLElement;
+            chatMessages.scrollTo({
+              top: lastUserMessage.offsetTop - 16,
+              behavior: 'smooth'
+            });
+          } else {
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+          }
+        }
       });
     };
 
