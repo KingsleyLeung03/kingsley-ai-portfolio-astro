@@ -61,6 +61,7 @@ ${allMarkdown}`,
 					content: input,
 				},
 			],
+			reasoning_effort: "minimal",
 		});
 
 		return (
