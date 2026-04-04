@@ -2,8 +2,10 @@
 import { Icon } from "astro-icon/components";
 ---
 
-<!-- Chatbot UI Container -->
-<div id="ai-chatbot-root" class="w-full max-w-md h-[55vh] overflow-hidden rounded-box shadow-md border border-base-300 bg-base-100 flex flex-col relative text-base-content mx-auto transition-all duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] z-40">
+<!-- Chatbot UI Placeholder Container -->
+<div class="w-full max-w-md h-[55vh] mx-auto relative">
+  <!-- Chatbot UI Container -->
+  <div id="ai-chatbot-root" class="w-full h-full overflow-hidden rounded-box shadow-md border border-base-300 bg-base-100 flex flex-col relative text-base-content z-40">
   <header class="flex items-center justify-between p-4 border-b border-base-300 bg-base-200">
     <h3 class="font-headline text-lg font-bold">AI Assistant</h3>
     <div class="flex gap-1">
@@ -28,6 +30,7 @@ import { Icon } from "astro-icon/components";
       </button>
     </form>
   </div>
+</div>
 </div>
 
 <template id="bot-message-template">
@@ -145,27 +148,12 @@ import { Icon } from "astro-icon/components";
       chatInput.focus();
     };
 
-    const minimiseChatbot = () => {
-      chatbotRoot.classList.remove('chat-zoomed');
-      if (minimiseBtn) minimiseBtn.classList.add('hidden');
-      if (zoomBtn) zoomBtn.classList.remove('hidden');
-      
-      const backdrop = document.getElementById('chatbot-backdrop');
-      if (backdrop) {
-        backdrop.classList.add('opacity-0');
-        setTimeout(() => backdrop.remove(), 300);
-      }
-      document.body.style.overflow = '';
-    };
-
-    const zoomChatbot = () => {
-      if (!chatbotRoot.classList.contains('chat-zoomed')) {
+    const toggleZoomState = (isZoomed: boolean) => {
+      if (isZoomed) {
         chatbotRoot.classList.add('chat-zoomed');
-        
         if (minimiseBtn) minimiseBtn.classList.remove('hidden');
         if (zoomBtn) zoomBtn.classList.add('hidden');
         
-        // Add backdrop
         let backdrop = document.getElementById('chatbot-backdrop');
         if (!backdrop) {
           backdrop = document.createElement('div');
@@ -179,9 +167,36 @@ import { Icon } from "astro-icon/components";
           
           backdrop.addEventListener('click', minimiseChatbot);
         }
-        
-        // Prevent body scroll
         document.body.style.overflow = 'hidden';
+      } else {
+        chatbotRoot.classList.remove('chat-zoomed');
+        if (minimiseBtn) minimiseBtn.classList.add('hidden');
+        if (zoomBtn) zoomBtn.classList.remove('hidden');
+        
+        const backdrop = document.getElementById('chatbot-backdrop');
+        if (backdrop) {
+          backdrop.classList.add('opacity-0');
+          setTimeout(() => backdrop.remove(), 300);
+        }
+        document.body.style.overflow = '';
+      }
+    };
+
+    const minimiseChatbot = () => {
+      if (!chatbotRoot.classList.contains('chat-zoomed')) return;
+      if (document.startViewTransition) {
+        document.startViewTransition(() => toggleZoomState(false));
+      } else {
+        toggleZoomState(false);
+      }
+    };
+
+    const zoomChatbot = () => {
+      if (chatbotRoot.classList.contains('chat-zoomed')) return;
+      if (document.startViewTransition) {
+        document.startViewTransition(() => toggleZoomState(true));
+      } else {
+        toggleZoomState(true);
       }
     };
 
@@ -240,6 +255,10 @@ import { Icon } from "astro-icon/components";
 </script>
 
 <style>
+  #ai-chatbot-root {
+    view-transition-name: chatbot-modal;
+  }
+
   #ai-chatbot-root.chat-zoomed {
     position: fixed;
     top: 50%;
