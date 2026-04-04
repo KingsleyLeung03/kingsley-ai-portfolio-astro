@@ -1,17 +1,17 @@
 ---
 import BaseHead from "../components/BaseHead.astro";
-import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
 import { NAV_ITEMS } from "../consts";
 
 interface Props {
-  title?: string;
-  description?: string;
+	title?: string;
+	description?: string;
 }
 
 const {
-  title = "Kingsley's AI Portfolio",
-  description = "A personal portfolio for Kingsley, powered by AI.",
+	title = "Kingsley's AI Portfolio",
+	description = "A personal portfolio for Kingsley, powered by AI.",
 } = Astro.props;
 
 const pathname = Astro.url.pathname;

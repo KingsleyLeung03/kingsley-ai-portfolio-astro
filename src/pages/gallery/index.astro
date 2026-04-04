@@ -1,52 +1,54 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import fs from "fs/promises";
-import path from "path";
+import fs from "node:fs/promises";
+import path from "node:path";
 import { create as createExifParser } from "exif-parser";
+import Layout from "../../layouts/Layout.astro";
 
 async function getGalleryImages() {
-  const galleryDir = path.join(process.cwd(), "public/gallery");
-  try {
-    const filenames = (await fs.readdir(galleryDir)).filter((file) =>
-      /\.(jpg|jpeg|png|gif|webp)$/i.test(file),
-    );
+	const galleryDir = path.join(process.cwd(), "public/gallery");
+	try {
+		const filenames = (await fs.readdir(galleryDir)).filter((file) =>
+			/\.(jpg|jpeg|png|gif|webp)$/i.test(file),
+		);
 
-    const imagesWithDates = await Promise.all(
-      filenames.map(async (filename) => {
-        const filePath = path.join(galleryDir, filename);
-        let date: Date;
+		const imagesWithDates = await Promise.all(
+			filenames.map(async (filename) => {
+				const filePath = path.join(galleryDir, filename);
+				let date: Date;
 
-        try {
-          if (/\.jpe?g$/i.test(filename)) {
-            const buffer = await fs.readFile(filePath);
-            const parser = createExifParser(buffer);
-            const result = parser.parse();
+				try {
+					if (/\.jpe?g$/i.test(filename)) {
+						const buffer = await fs.readFile(filePath);
+						const parser = createExifParser(buffer);
+						const result = parser.parse();
 
-            if (result.tags && result.tags.DateTimeOriginal) {
-              date = new Date(result.tags.DateTimeOriginal * 1000);
-              return { filename, date };
-            }
-          }
-          const stats = await fs.stat(filePath);
-          date = stats.mtime;
-        } catch (e) {
-          const stats = await fs.stat(filePath);
-          date = stats.mtime;
-        }
-        return { filename, date };
-      }),
-    );
+						if (result.tags?.DateTimeOriginal) {
+							date = new Date(result.tags.DateTimeOriginal * 1000);
+							return { filename, date };
+						}
+					}
+					const stats = await fs.stat(filePath);
+					date = stats.mtime;
+				} catch (e) {
+					const stats = await fs.stat(filePath);
+					date = stats.mtime;
+				}
+				return { filename, date };
+			}),
+		);
 
-    imagesWithDates.sort((a, b) => b.date.getTime() - a.date.getTime());
-    return imagesWithDates.map((image) => image.filename);
-  } catch (error) {
-    return [];
-  }
+		imagesWithDates.sort((a, b) => b.date.getTime() - a.date.getTime());
+		return imagesWithDates.map((image) => image.filename);
+	} catch (error) {
+		return [];
+	}
 }
 
 const imageFiles = await getGalleryImages();
 const isPlaceholder = imageFiles.length === 0;
-const displayImages = isPlaceholder ? Array.from({ length: 6 }, (_, i) => `placeholder-${i + 1}`) : imageFiles;
+const displayImages = isPlaceholder
+	? Array.from({ length: 6 }, (_, i) => `placeholder-${i + 1}`)
+	: imageFiles;
 ---
 
 <Layout title="Photo Gallery | Kingsley's AI Portfolio" description="A collection of photos.">
@@ -60,7 +62,7 @@ const displayImages = isPlaceholder ? Array.from({ length: 6 }, (_, i) => `place
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {displayImages.map((filename, index) => (
           <div class="card bg-base-100 shadow-xl overflow-hidden group rounded-xl">
-            <figure class="relative w-full aspect-[4/3] bg-base-200 m-0">
+            <figure class="relative w-full aspect-4/3 bg-base-200 m-0">
               <img
                 src={isPlaceholder ? `https://placehold.co/600x450.png` : `/gallery/${filename}`}
                 alt={`Gallery image ${index + 1}`}
