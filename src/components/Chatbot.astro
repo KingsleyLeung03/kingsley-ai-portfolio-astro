@@ -3,9 +3,17 @@ import { Icon } from "astro-icon/components";
 ---
 
 <!-- Chatbot UI Container -->
-<div id="ai-chatbot-root" class="w-full max-w-md h-[55vh] overflow-hidden rounded-box shadow-md border border-base-300 bg-base-100 flex flex-col relative text-base-content mx-auto">
+<div id="ai-chatbot-root" class="w-full max-w-md h-[55vh] overflow-hidden rounded-box shadow-md border border-base-300 bg-base-100 flex flex-col relative text-base-content mx-auto transition-all duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] z-40">
   <header class="flex items-center justify-between p-4 border-b border-base-300 bg-base-200">
     <h3 class="font-headline text-lg font-bold">AI Assistant</h3>
+    <div class="flex gap-1">
+      <button id="chatbot-zoom-btn" type="button" class="btn btn-ghost btn-sm btn-square" aria-label="Expand chatbot">
+        <Icon name="ph:arrows-out-simple" class="h-5 w-5" />
+      </button>
+      <button id="chatbot-minimise-btn" type="button" class="btn btn-ghost btn-sm btn-square hidden" aria-label="Minimise chatbot">
+        <Icon name="ph:arrows-in-simple" class="h-5 w-5" />
+      </button>
+    </div>
   </header>
   
   <div class="flex-1 p-4 overflow-y-auto bg-base-100 space-y-4" id="chat-messages">
@@ -65,8 +73,11 @@ import { Icon } from "astro-icon/components";
     const chatInput = document.getElementById('chat-input') as HTMLInputElement;
     const chatMessages = document.getElementById('chat-messages');
     const submitBtn = document.getElementById('chat-submit') as HTMLButtonElement;
+    const chatbotRoot = document.getElementById('ai-chatbot-root');
+    const minimiseBtn = document.getElementById('chatbot-minimise-btn');
+    const zoomBtn = document.getElementById('chatbot-zoom-btn');
     
-    if (!chatForm || !chatInput || !chatMessages || !submitBtn) return;
+    if (!chatForm || !chatInput || !chatMessages || !submitBtn || !chatbotRoot) return;
 
     // Prevent multiple initializations if using View Transitions
     if (chatForm.dataset.initialized) return;
@@ -134,6 +145,54 @@ import { Icon } from "astro-icon/components";
       chatInput.focus();
     };
 
+    const minimiseChatbot = () => {
+      chatbotRoot.classList.remove('chat-zoomed');
+      if (minimiseBtn) minimiseBtn.classList.add('hidden');
+      if (zoomBtn) zoomBtn.classList.remove('hidden');
+      
+      const backdrop = document.getElementById('chatbot-backdrop');
+      if (backdrop) {
+        backdrop.classList.add('opacity-0');
+        setTimeout(() => backdrop.remove(), 300);
+      }
+      document.body.style.overflow = '';
+    };
+
+    const zoomChatbot = () => {
+      if (!chatbotRoot.classList.contains('chat-zoomed')) {
+        chatbotRoot.classList.add('chat-zoomed');
+        
+        if (minimiseBtn) minimiseBtn.classList.remove('hidden');
+        if (zoomBtn) zoomBtn.classList.add('hidden');
+        
+        // Add backdrop
+        let backdrop = document.getElementById('chatbot-backdrop');
+        if (!backdrop) {
+          backdrop = document.createElement('div');
+          backdrop.id = 'chatbot-backdrop';
+          backdrop.className = 'fixed inset-0 bg-base-300/60 backdrop-blur-sm z-[90] opacity-0 transition-opacity duration-300';
+          document.body.appendChild(backdrop);
+          
+          requestAnimationFrame(() => {
+            backdrop?.classList.remove('opacity-0');
+          });
+          
+          backdrop.addEventListener('click', minimiseChatbot);
+        }
+        
+        // Prevent body scroll
+        document.body.style.overflow = 'hidden';
+      }
+    };
+
+    if (zoomBtn) {
+      zoomBtn.addEventListener('click', zoomChatbot);
+    }
+    
+    if (minimiseBtn) {
+      minimiseBtn.addEventListener('click', minimiseChatbot);
+    }
+
     chatForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       
@@ -141,6 +200,10 @@ import { Icon } from "astro-icon/components";
       if (!message) return;
       
       chatInput.value = '';
+      
+      // Zoom the chatbot when sending a message
+      zoomChatbot();
+
       addMessage(message, 'user');
       showLoading();
 
@@ -175,3 +238,26 @@ import { Icon } from "astro-icon/components";
   // Also run on astro:page-load for View Transitions support
   document.addEventListener('astro:page-load', setupChatbot);
 </script>
+
+<style>
+  #ai-chatbot-root.chat-zoomed {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90vw;
+    height: 85vh;
+    max-width: 1000px;
+    z-index: 100;
+    margin: 0;
+  }
+  
+  @media (max-width: 768px) {
+    #ai-chatbot-root.chat-zoomed {
+      width: 100vw;
+      height: 100dvh;
+      max-width: none;
+      border-radius: 0;
+    }
+  }
+</style>
