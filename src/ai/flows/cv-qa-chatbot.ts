@@ -66,7 +66,7 @@ ${allMarkdown}`,
 		return (
 			response.choices[0].message.content ??
 			"I'm sorry, I don't have an answer for that."
-		);
+		).replace(/\n{3,}/g, "\n\n");
 	} catch (error) {
 		console.error("Error calling AI model:", error);
 		return "I'm sorry, something went wrong while getting an answer. Please check the server logs.";
