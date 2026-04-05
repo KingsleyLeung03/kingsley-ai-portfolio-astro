@@ -46,19 +46,24 @@ const {
         <p
           class="mt-2 text-xl md:text-2xl text-primary font-semibold leading-relaxed flex flex-wrap items-center justify-center md:justify-start gap-2"
         >
-          <span class="inline-block">Software Developer</span>
-          <span class="text-base-content/20 hidden md:inline">|</span>
-          <span class="inline-block">C#, Python & TypeScript</span>
-          <span class="text-base-content/20 hidden md:inline">|</span>
-          <span class="inline-block">Passionate about AI-Driven Problem-Solving and DevOps</span>
+          {
+            profile.title.split("|").map((segment, index, array) => (
+              <>
+                <span class="inline-block">{segment.trim()}</span>
+                {index < array.length - 1 && (
+                  <span class="text-base-content/20 hidden md:inline">|</span>
+                )}
+              </>
+            ))
+          }
         </p>
-        <p class="mt-4 text-lg text-base-content/80 break-words">{profile.summary}</p>
+        <p class="mt-4 text-lg text-base-content/80 wrap-break-word">{profile.summary}</p>
         <div
           class="mt-6 flex flex-col sm:flex-row gap-4 justify-center md:justify-start"
         >
           <a
             href={profile.resumeUrl}
-            download="Kingsley_Leung_Resume.pdf"
+            download="Zihong_Liang_CV.docx"
             class="btn btn-primary btn-lg"
           >
             <Icon name="ph:download-simple" class="mr-2 h-4 w-4" />
@@ -137,7 +142,7 @@ const {
       <div class="flex flex-wrap gap-2">
         {
           skills.map((skill) => (
-            <div class="inline-block bg-secondary text-secondary-content rounded-xl py-1.5 px-4 shadow-sm text-sm font-medium h-auto whitespace-normal break-words max-w-full border border-secondary/20">
+            <div class="inline-block bg-secondary text-secondary-content rounded-xl py-1.5 px-4 shadow-sm text-sm font-medium h-auto whitespace-normal wrap-break-word max-w-full border border-secondary/20">
               {skill}
             </div>
           ))
@@ -170,7 +175,7 @@ const {
                 </ul>
                 <div class="flex flex-wrap gap-2 mt-2">
                   {job.tags.map((tag) => (
-                    <span class="inline-block bg-secondary text-secondary-content rounded-xl py-1.5 px-4 shadow-sm text-sm font-medium h-auto whitespace-normal break-words max-w-full border border-secondary/20">
+                    <span class="inline-block bg-secondary text-secondary-content rounded-xl py-1.5 px-4 shadow-sm text-sm font-medium h-auto whitespace-normal wrap-break-word max-w-full border border-secondary/20">
                       {tag}
                     </span>
                   ))}
@@ -207,7 +212,7 @@ const {
                 </ul>
                 <div class="flex flex-wrap gap-2 my-4">
                   {project.tags.map((tag) => (
-                    <span class="inline-block bg-secondary text-secondary-content rounded-xl py-1.5 px-4 shadow-sm text-sm font-medium h-auto whitespace-normal break-words max-w-full border border-secondary/20">
+                    <span class="inline-block bg-secondary text-secondary-content rounded-xl py-1.5 px-4 shadow-sm text-sm font-medium h-auto whitespace-normal wrap-break-word max-w-full border border-secondary/20">
                       {tag}
                     </span>
                   ))}
@@ -255,7 +260,7 @@ const {
                 </ul>
                 <div class="flex flex-wrap gap-2 mt-2">
                   {edu.tags.map((tag) => (
-                    <span class="inline-block bg-secondary text-secondary-content rounded-xl py-1.5 px-4 shadow-sm text-sm font-medium h-auto whitespace-normal break-words max-w-full border border-secondary/20">
+                    <span class="inline-block bg-secondary text-secondary-content rounded-xl py-1.5 px-4 shadow-sm text-sm font-medium h-auto whitespace-normal wrap-break-word max-w-full border border-secondary/20">
                       {tag}
                     </span>
                   ))}
@@ -293,7 +298,7 @@ const {
                 </ul>
                 <div class="flex flex-wrap gap-2 mt-4 flex-none">
                   {award.tags.map((tag) => (
-                    <span class="inline-block bg-secondary text-secondary-content rounded-xl py-1.5 px-4 shadow-sm text-sm font-medium h-auto whitespace-normal break-words max-w-full border border-secondary/20">
+                    <span class="inline-block bg-secondary text-secondary-content rounded-xl py-1.5 px-4 shadow-sm text-sm font-medium h-auto whitespace-normal wrap-break-word max-w-full border border-secondary/20">
                       {tag}
                     </span>
                   ))}

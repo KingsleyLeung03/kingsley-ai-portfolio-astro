@@ -1,6 +1,6 @@
 # Zihong Liang
 
-**Software Developer | C#, Python & TypeScript | Passionate about AI-Driven Problem-Solving and DevOps**
+**Software Developer | Full-Stack, AI & DevOps | C#, Python & TypeScript**
 
 ## Contact Information
 
@@ -12,7 +12,7 @@
 
 ## Personal Profile
 
-A high-achieving Computer Science graduate (GPA 7.1/9) who led a six-member team to develop an AI-powered web platform for wildlife conservation. Skilled in full-stack development, recognised for being collaborative and continuously learning new tech stacks like AWS as needed, demonstrated through an internship at Endace and multiple projects. Proficient in DevOps practices, including Git, Docker, CI/CD. Ready to leverage a strong foundation in C#, TypeScript and Python.
+A high-achieving Computer Science graduate (GPA 7.1/9) with proven experience in full-stack development, system architecture, and AI integrations. Skilled in building scalable applications and RESTful APIs using TypeScript, Python, and C#. Strong foundation in Agile methodologies and DevOps practices (Docker, CI/CD pipelines, Git). Recognised for leadership, rapid adaptation to emerging technologies, and delivering performant, user-centric solutions.
 
 ## Education History
 
