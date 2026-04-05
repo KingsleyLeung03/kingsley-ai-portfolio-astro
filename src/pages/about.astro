@@ -46,11 +46,16 @@ const {
         <p
           class="mt-2 text-xl md:text-2xl text-primary font-semibold leading-relaxed flex flex-wrap items-center justify-center md:justify-start gap-2"
         >
-          <span class="inline-block">Software Developer</span>
-          <span class="text-base-content/20 hidden md:inline">|</span>
-          <span class="inline-block">C#, Python & TypeScript</span>
-          <span class="text-base-content/20 hidden md:inline">|</span>
-          <span class="inline-block">Passionate about AI-Driven Problem-Solving and DevOps</span>
+          {
+            profile.title.split("|").map((segment, index, array) => (
+              <>
+                <span class="inline-block">{segment.trim()}</span>
+                {index < array.length - 1 && (
+                  <span class="text-base-content/20 hidden md:inline">|</span>
+                )}
+              </>
+            ))
+          }
         </p>
         <p class="mt-4 text-lg text-base-content/80 wrap-break-word">{profile.summary}</p>
         <div
