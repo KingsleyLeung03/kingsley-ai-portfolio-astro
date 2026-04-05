@@ -1,9 +1,11 @@
 export const portfolioData = {
 	profile: {
 		name: "Zihong Liang",
-		title: "Software Developer | Full-Stack, AI & DevOps | C#, Python & TypeScript",
+		title:
+			"Software Developer | Full-Stack, AI & DevOps | C#, Python & TypeScript",
 		avatar: "/about/avatar.jpg", // We will have to move avatar.jpg to public/about/avatar.jpg
-		summary: "A high-achieving Computer Science graduate (GPA 7.1/9) with proven experience in full-stack development, system architecture, and AI integrations. Skilled in building scalable applications and RESTful APIs using TypeScript, Python, and C#. Strong foundation in Agile methodologies and DevOps practices (Docker, CI/CD pipelines, Git). Recognised for leadership, rapid adaptation to emerging technologies, and delivering performant, user-centric solutions.",
+		summary:
+			"A high-achieving Computer Science graduate (GPA 7.1/9) with proven experience in full-stack development, system architecture, and AI integrations. Skilled in building scalable applications and RESTful APIs using TypeScript, Python, and C#. Strong foundation in Agile methodologies and DevOps practices (Docker, CI/CD pipelines, Git). Recognised for leadership, rapid adaptation to emerging technologies, and delivering performant, user-centric solutions.",
 		resumeUrl: "/resume/Zihong_Liang_CV.docx",
 		transcriptUrl: "/transcript/Zihong_Liang_Auckland_Transcript.pdf",
 	},
