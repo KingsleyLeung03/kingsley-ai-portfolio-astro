@@ -5,7 +5,7 @@ export const portfolioData = {
 			"Software Developer | Full-Stack, AI & DevOps | C#, Python & TypeScript",
 		avatar: "/about/avatar.jpg", // We will have to move avatar.jpg to public/about/avatar.jpg
 		summary:
-			"A high-achieving Computer Science graduate (GPA 7.1/9) with proven experience in full-stack development, system architecture, and AI integrations. Skilled in building scalable applications and RESTful APIs using TypeScript, Python, and C#. Strong foundation in Agile methodologies and DevOps practices (Docker, CI/CD pipelines, Git). Recognised for leadership, rapid adaptation to emerging technologies, and delivering performant, user-centric solutions.",
+			"A high-achieving Computer Science graduate (GPA 7.1/9) with proven experience in full-stack development, system architecture, and AI integrations. Skilled in building scalable applications and RESTful APIs using TypeScript, Python, and C#. Strong foundation in Agile methodologies and DevOps practices (Docker, CI/CD pipelines, Git). Recognised for leadership, proven abilities to rapidly master new tech stacks with recent exploration in Go, Flutter, and delivering performant, user-centric solutions.",
 		resumeUrl: "/resume/Zihong_Liang_CV.docx",
 		transcriptUrl: "/transcript/Zihong_Liang_Auckland_Transcript.pdf",
 	},
@@ -64,26 +64,46 @@ export const portfolioData = {
 	],
 	workExperience: [
 		{
-			role: "Intern - Junior Developer",
+			role: "Junior Developer",
 			company: "Decoded",
-			period: "Oct 2025 – Present",
+			period: "Dec 2025 – Present",
 			description: [
-				"Contributed to full-stack application development with TypeScript, Next.js, React, Node.js, Express.js, Vitest, and MongoDB.",
-				"Utilised Git for version control and operated within a Linux environment, using Bash for development and operational tasks.",
-				"Leveraged modern tools like Cursor to accelerate debugging and feature implementation in a collaborative team setting.",
+				"Spearhead end-to-end full-stack development using TypeScript, Next.js, React, Node.js, Hono and Bun, delivering scalable and high-performance web applications.",
+				"Architect robust RESTful APIs and optimise database operations with MongoDB, ensuring seamless data flow and system reliability.",
+				"Operated extensively in a Linux (Ubuntu, Fedora) environment, leveraging Bash scripting and Git to support version control and CI/CD workflows.",
 			],
 			tags: [
 				"TypeScript",
 				"Next.js",
 				"React",
 				"Node.js",
-				"Express.js",
-				"Vitest",
+				"Hono",
+				"Bun",
 				"MongoDB",
 				"Git",
 				"Linux",
 				"Bash",
+			],
+		},
+		{
+			role: "Junior Developer - Intern",
+			company: "Decoded",
+			period: "Oct 2025 – Dec 2025",
+			description: [
+				"Collaborated within an Agile team to build and maintain user-facing features utilising TypeScript, React, Express.js and Node.js.",
+				"Enforce code quality through Test-Driven Development (TDD) with Vitest while managing deployments via automated CI/CD pipelines.",
+				"Accelerated feature implementation, debugging, and onboarding by integrating AI-assisted IDEs and tools (Cursor, Claude Code) into daily development processes.",
+			],
+			tags: [
+				"TypeScript",
+				"React",
+				"Node.js",
+				"Express.js",
+				"Vitest",
+				"Agile",
+				"CI/CD",
 				"Cursor",
+				"Claude Code",
 			],
 		},
 		{
@@ -91,19 +111,15 @@ export const portfolioData = {
 			company: "Tribes Digital",
 			period: "Sep 2025 – Oct 2025",
 			description: [
-				"Engaged in full-stack development using TypeScript, Python, Next.js, React, FastAPI, and PostgreSQL, contributing to the MVP roll-out.",
-				"Gained hands-on experience with hosting services like Vercel, Render, and Neon, deploying and managing applications throughout the project lifecycle.",
-				"Utilised Docker and implemented CI/CD pipelines with GitHub Actions to automate testing and deployment.",
-				"Gained hands-on experience across multiple technological domains, including SaaS-based CRM systems.",
-				"Assessed and experimented with emerging AI and generative tools, like GitHub Copilot, Gemini Code Assist, and Cursor.",
+				"Architected and rolled out a SaaS-based MVP CRM system, demonstrating adaptability by rapidly executing across a diverse tech stack (TypeScript, Next.js, Python, FastAPI).",
+				"Established CI/CD pipelines using GitHub Actions to automate testing and containerised deployments via Docker.",
+				"Managed application lifecycles and deployments across cloud hosting platforms, including Vercel, Render, and Neon.",
 			],
 			tags: [
 				"TypeScript",
 				"Python",
 				"Next.js",
-				"React",
 				"FastAPI",
-				"PostgreSQL",
 				"Vercel",
 				"Render",
 				"Neon",
@@ -112,8 +128,6 @@ export const portfolioData = {
 				"GitHub Actions",
 				"SaaS",
 				"CRM",
-				"AI",
-				"Generative AI",
 			],
 		},
 		{
@@ -121,10 +135,9 @@ export const portfolioData = {
 			company: "Endace Technology",
 			period: "Nov 2024 – Feb 2025",
 			description: [
-				"Architected and developed a modular profile system using Python, FastAPI, and Jinja2 to improve scalability and maintainability, assisting in the deployment and configuration on core network probe products.",
-				"Engineered a dynamic, user-friendly UI with JavaScript and Bootstrap, earning commendations from senior engineers for its intuitive design and positive user experience.",
-				"Enhanced system efficiency and maintainability, streamlining the configuration process for end-users and significantly reducing the potential for setup errors.",
-				"Operated within an Agile framework using Jira, Confluence and Bitbucket, while collaborating with seniors to enhance features, resolve bugs, and debug issues, maximising team productivity.",
+				"Engineered a modular profile configuration system for core network probes, rapidly upskilling in Python, FastAPI, and Jinja2, significantly improving system scalability and reducing end-user setup errors.",
+				"Designed and implemented an intuitive frontend UI with JavaScript, jQuery and Bootstrap, earning commendations from senior engineering staff.",
+				"Collaborated in a fast-paced Agile environment utilising Jira, Confluence, and Bitbucket to sprint plan, resolve bugs, and deliver features.",
 			],
 			tags: [
 				"Python",
@@ -136,26 +149,15 @@ export const portfolioData = {
 				"Agile",
 				"Jira",
 				"Confluence",
-				"Debugging",
+				"Bitbucket",
 			],
-		},
-		{
-			role: "Professional Notetaker",
-			company: "The University of Auckland",
-			period: "Aug 2024 – Dec 2024",
-			description: [
-				"Translated complex academic lectures into clear, accessible, and structured notes for students registered with Student Disability Services, directly supporting academic inclusivity.",
-				"Demonstrated high attention to detail and adaptability by delivering quality notes across diverse and technical subjects, consistently meeting strict deadlines.",
-			],
-			tags: ["Academic Support", "Communication", "Attention to Detail"],
 		},
 		{
 			role: "Information Technology Operator",
-			company: "Triumen Group Zhuhai Branch",
+			company: "Triumen Group",
 			period: "Aug 2020 – Nov 2020",
 			description: [
-				"Provided critical front-line IT support for all hardware, software, and network issues, minimising downtime and ensuring smooth daily operations for the entire office.",
-				"Investigated and resolved technical problems with printers, routers, and desktop applications to increase operational efficiency.",
+				"Provided front-line IT support, diagnosing and resolving hardware, software, and network issues to ensure zero downtime.",
 			],
 			tags: [
 				"IT Support",
@@ -167,12 +169,11 @@ export const portfolioData = {
 	],
 	projects: [
 		{
-			name: "Kingsley's AI Portfolio (Astro Rewrite)",
+			name: "AI-Powered Personal Portfolio (Astro Rewrite)",
 			description: [
-				"A complete rewrite of my personal portfolio using Astro to achieve a more modern, lightweight, and performant web experience while matching the original Next.js design.",
-				"Leveraged Astro's Islands architecture and zero-JS-by-default approach to optimise page load speeds, seamlessly integrating Tailwind CSS and DaisyUI for responsive styling.",
-				"Integrated an interactive AI Chatbot with the experimental Astro Server Islands, and used the Google Gemini API to dynamically answer queries based on my resume.",
-				"Set up an automated CI/CD pipeline with GitHub Actions for linting, building, and deploying directly to Vercel.",
+				"Engineered a highly performant web portfolio leveraging Astro's Islands architecture, Tailwind CSS, and DaisyUI, optimising page load speeds via a zero-JS-by-default approach.",
+				"Integrated a context-aware AI Chatbot using the Google Gemini API and experimental Astro Server Islands to dynamically respond to user queries based on resume data.",
+				"Established an automated CI/CD pipeline via GitHub Actions for continuous linting, building, and zero-downtime deployment to Vercel.",
 			],
 			tags: [
 				"Astro",
@@ -209,11 +210,10 @@ export const portfolioData = {
 			link: "https://kingsley-leung.vercel.app",
 		},
 		{
-			name: "PowerGPT — Remote MCP Server for LLM Tool Augmentation",
+			name: "PowerGPT — MCP Server for LLM Tool Augmentation",
 			description: [
-				"Built and deployed an MCP (Model Context Protocol) server on Cloudflare Workers using TypeScript, Bun, Wrangler, GitHub Actions, and optional Docker for reproducible local runs.",
-				"Delivered secure, auditable numeric computation and web content extraction tools to extend LLM capabilities, especially in offline or restricted environments.",
-				"Enhanced reliability and adoption by centralising computation/fetching, reducing hallucination risk, and providing clear documentation to connect the MCP to Cloudflare AI Playground and Claude Desktop.",
+				"Engineered a Model Context Protocol (MCP) server to extend LLM capabilities in restricted environments with secure, auditable tools.",
+				"Deployed via Cloudflare Workers with automated GitHub Actions workflows; provided Docker support for reproducible local runs.",
 			],
 			tags: [
 				"TypeScript",
@@ -226,12 +226,10 @@ export const portfolioData = {
 			link: "https://github.com/KingsleyLeung03/power-gpt",
 		},
 		{
-			name: "CARE Web Platform: AI-Driven Wildlife Conservation",
+			name: "AI-Powered Web Platform for Wildlife Conservation (CARE)",
 			description: [
-				"Led a 6-member team to design and implement an HTML, CSS, React web platform for AI image-based pest detection.",
-				"Developed a full-stack solution, building the backend API with JavaScript, Node.js and Express.js. Collaborated closely with a PhD research group to integrate machine learning models.",
-				"Managed the project using Agile methodologies, including sprint planning and task tracking, to ensure on-time delivery.",
-				"Improved tracking of species like stoats, contributing to NZ biodiversity protection.",
+				"Led a 6-member engineering team in Agile sprints to deliver a full-stack platform for AI image-based pest detection.",
+				"Developed backend architecture and collaborated with a PhD research group to integrate custom ML models, directly aiding in New Zealand biodiversity protection by improving predator tracking.",
 			],
 			tags: [
 				"React",
@@ -248,9 +246,7 @@ export const portfolioData = {
 		{
 			name: "PhotoRecipe: AI-Powered Recipe Generator",
 			description: [
-				"Engineered a full-stack Next.js application with Node.js, leveraging Firebase Genkit to orchestrate Google Gemini AI models for a complete 'photo-to-recipe' pipeline.",
-				"Implemented core features including AI-driven ingredient identification from photos, dynamic recipe generation with detailed instructions and nutritional information, and unique AI-generated dish images.",
-				"Developed a responsive UI using TypeScript, Tailwind CSS, and ShadCN, managing state with React Hooks and optimising performance with client-side image compression.",
+				"Engineered a “photo-to-recipe” pipeline using Firebase Genkit to orchestrate Google Gemini vision models for ingredient identification.",
 			],
 			tags: [
 				"Node.js",
@@ -309,13 +305,13 @@ export const portfolioData = {
 	],
 	education: [
 		{
-			degree: "Bachelor of Science, Computer Science",
+			degree: "Bachelor of Science in Computer Science",
 			institution: "The University of Auckland",
 			period: "Jan 2022 – May 2025",
 			description: [
-				"Major in Computer Science, GPA: 7.1/9 with two Certificates of Outstanding Achievement from the faculty.",
-				"Coursework and Projects: Full-Stack Development, RESTful APIs (Java, C#, Python), SQL, AI/ML, Cybersecurity, Computer Architecture, Data Communications and Security, Operating Systems.",
-				"Class Representative for three courses, recognised for leadership with multiple certificates from the student association.",
+				"GPA: 7.1/9 | Coursework: Full-Stack Dev, RESTful APIs, AI/ML, Cybersecurity, Computer Architecture, Data Communication.",
+				"Leadership: 3x Elected Class Representative; awarded 3 Certificates of Appreciation by the Students' Association (AUSA).",
+				"Academic Awards: 2x Certificate of Outstanding Achievement (Top performance in Software Development Methodologies & OOP).",
 			],
 			tags: [
 				"Computer Science",
